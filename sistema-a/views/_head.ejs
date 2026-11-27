@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= title %> · Sistema A</title><link rel="stylesheet" href="/static/style.css"></head><body>
+<nav><strong>🛡️ Sistema A</strong>
+  <span class="grow"></span>
+  <% if (user) { %>
+    <a href="/dashboard">Dashboard</a>
+    <% if (user.roles.includes(adminRole)) { %><a href="/admin">Admin</a><% } %>
+    <form method="post" action="/logout"><input type="hidden" name="csrf" value="<%= csrf %>"><button>Cerrar sesión</button></form>
+  <% } else { %><a href="/login">Iniciar sesión</a><% } %>
+</nav><main>
