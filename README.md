@@ -41,3 +41,41 @@ docker compose up -d
 * **Integrante 2:** IAM & Security Engineer (Keycloak Realm, Clientes OIDC, 2FA TOTP).
 * **Integrante 3:** Software Engineer A (Desarrollo Sistema A, Middleware OIDC).
 * **Integrante 4:** SecOps & QA Lead (SAST Semgrep/SonarQube, Auditoría y Ética Algorítmica).
+
+---
+
+## Configuración de Keycloak para Sistema A
+
+### Iniciar Keycloak
+
+Desde la carpeta del repositorio, con Docker Desktop abierto, ejecutar:
+
+```powershell
+docker compose up -d
+```
+
+La consola local estará en `http://127.0.0.1:8080/admin`. Usa las credenciales definidas * **Usuario:*
+* `admin`
+* **Contraseña:** `AdminSecurePass2026!`
+
+### Crear la configuración del proyecto
+
+En la consola de Keycloak, crear y habilitar el Realm `SecureDev-Realm`, y dentro de él crear el cliente OIDC `sistema-a-client`.
+
+Configurar el cliente según la integración local del Sistema A:
+
+- Redirect URI: `http://localhost:3000/*`
+- Web origin: `http://localhost:3000`
+- Activar **Standard flow**.
+- Habilitar **Configure OTP** como acción requerida predeterminada.
+- Política OTP: TOTP, SHA1, 6 dígitos y periodo de 30 segundos.
+
+Crear un usuario local de prueba y registrar OTP con una aplicación autenticadora.
+
+### Datos para conectar el Sistema A
+
+- Realm: `SecureDev-Realm`
+- Client ID: `sistema-a-client`
+- Discovery endpoint: `http://127.0.0.1:8080/realms/SecureDev-Realm/.well-known/openid-configuration`
+
+
