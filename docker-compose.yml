@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres-iam:
+    image: postgres:15-alpine
+    container_name: postgres-iam
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: KeycloakDbPassword2026!
+    volumes:
+      - postgres_iam_data:/var/lib/postgresql/data
+    networks:
+      - secure-network
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.5
+    container_name: keycloak-iam
+    command: start-dev
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres-iam:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: KeycloakDbPassword2026!
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: AdminSecurePass2026!
+      KC_HTTP_PORT: 8080
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-iam
+    networks:
+      - secure-network
+    restart: unless-stopped
+
+networks:
+  secure-network:
+    driver: bridge
+
+volumes:
+  postgres_iam_data:

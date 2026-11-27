@@ -1,0 +1,21 @@
+# Ignorar datos persistentes locales de Docker
+postgres_iam_data/
+keycloak_data/
+*.log
+
+# Entornos virtuales y dependencias
+node_modules/
+venv/
+__pycache__/
+.env
+.env.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.suo
+
+# Reportes temporales
+*.tmp
+sast-report.json
