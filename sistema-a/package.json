@@ -1,0 +1,23 @@
+{
+  "name": "sistema-a",
+  "version": "1.0.0",
+  "description": "Sistema A - Cliente OIDC (Keycloak) - ISWZ3206 Desarrollo de Software Seguro",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "sast": "semgrep scan --config auto --json --output sast-report.json ."
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "jose": "^5.9.0",
+    "openid-client": "^5.7.0"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,9 @@
+<%- include('_head') %>
+<h1>Administración</h1>
+<h2>Usuarios que han ingresado (BD local)</h2>
+<table><tr><th>Usuario</th><th>Email</th><th>Roles</th><th>Último login</th></tr>
+<% users.forEach(u => { %><tr><td><%= u.username %></td><td><%= u.email %></td><td><%= u.roles %></td><td><%= u.ultimo_login %></td></tr><% }) %></table>
+<h2>Auditoría (últimos 50 eventos)</h2>
+<table><tr><th>Fecha</th><th>Evento</th><th>IP</th></tr>
+<% log.forEach(l => { %><tr><td><%= l.fecha %></td><td><%= l.evento %></td><td><%= l.ip %></td></tr><% }) %></table>
+<%- include('_foot') %>

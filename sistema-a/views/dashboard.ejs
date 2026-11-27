@@ -1,0 +1,12 @@
+<%- include('_head') %>
+<h1>Bienvenido, <%= user.nombre %></h1>
+<table>
+  <tr><th>Usuario</th><td><%= user.username %></td></tr>
+  <tr><th>Email</th><td><%= user.email %></td></tr>
+  <tr><th>ID (sub)</th><td><code><%= user.sub %></code></td></tr>
+  <tr><th>Roles</th><td><%= user.roles.length ? user.roles.join(', ') : '(sin roles de Sistema A)' %></td></tr>
+  <tr><th>Nivel de autenticación (acr)</th><td><%= user.acr || '-' %></td></tr>
+  <tr><th>Primer login (BD local)</th><td><%= record ? record.primer_login : '-' %></td></tr>
+  <tr><th>Último login (BD local)</th><td><%= record ? record.ultimo_login : '-' %></td></tr>
+</table>
+<%- include('_foot') %>
